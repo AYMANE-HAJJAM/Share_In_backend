@@ -114,10 +114,12 @@ class FlaskTask(celery.Task):
 
 celery.Task = FlaskTask
 
+is_windows = os.name == 'nt'
+
 celery.conf.update(
     task_serializer='json',
     accept_content=['json'],
     result_serializer='json',
-    task_force_execv=True,  # Critical for Windows compatibility
-    worker_pool='solo'      # Use solo pool on Windows instead of prefork
+    task_force_execv=is_windows,  # Critical for Windows compatibility
+    worker_pool='prefork' if not is_windows else 'solo'      # Use solo pool on Windows instead of prefork
 )

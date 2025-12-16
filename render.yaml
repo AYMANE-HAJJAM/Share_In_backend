@@ -3,9 +3,8 @@ services:
   - type: web
     name: flask-api
     env: docker
-    dockerContext: .
-    dockerfile: Dockerfile
     plan: free
+    dockerContext: .
     envVars:
       - key: MONGO_URI
         sync: false
@@ -21,7 +20,6 @@ services:
     name: ai-agent-worker
     env: docker
     dockerContext: .
-    dockerfile: Dockerfile
     envVars:
       - key: MONGO_URI
         sync: false
@@ -35,4 +33,4 @@ services:
   # 3. Redis (L-Wasit)
   - type: redis
     name: redis-broker
-    ipAllowList: [] # Allow all internal
+    ipAllowList: []

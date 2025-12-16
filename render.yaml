@@ -4,7 +4,7 @@ services:
     name: flask-api
     env: docker
     dockerContext: .
-    dockerFilePath: Dockerfile
+    dockerfile: Dockerfile
     plan: free
     envVars:
       - key: MONGO_URI
@@ -21,7 +21,7 @@ services:
     name: ai-agent-worker
     env: docker
     dockerContext: .
-    dockerFilePath: Dockerfile
+    dockerfile: Dockerfile
     envVars:
       - key: MONGO_URI
         sync: false
